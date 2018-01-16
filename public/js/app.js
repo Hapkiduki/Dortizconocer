@@ -1,7 +1,3 @@
-$('.carousel').carousel({
-    interval: 2000
-})
-
 
 $('.select2').select2({
 	placeholder: "Seleccione una opción",

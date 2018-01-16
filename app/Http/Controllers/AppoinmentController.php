@@ -101,4 +101,9 @@ class AppoinmentController extends Controller
         return response($response);
     }
 
+	public function bookings()
+	{
+		return view('citas.booking');
+    }
+
 }

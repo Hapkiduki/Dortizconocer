@@ -12,7 +12,9 @@
             </ul>
         @endif
         <a href="{{ route('mis_citas') }}" class="btn btn-primary float-right">Mis Citas</a>
-
+            <div class="col-sm-11">
+        <a href="{{ route('bookings') }}" class="btn btn-warning float-right">Mis reservas</a>
+            </div>
         <br>
         <p>Agenda tu cita hoy, confirma el pago y seras contactado en breve por un especialista.</p>
         {!! Form::open(['route' => 'citas.store']) !!}

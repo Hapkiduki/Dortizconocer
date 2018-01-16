@@ -1,5 +1,8 @@
 <?php
-//use GuzzleHttp\Client;
+
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\Request as Guzzlereq;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +38,8 @@ Route::view('videollamada', 'front.videollamada');
 Route::resource('horarios', 'ScheduleController', ['except' => 'show']/*, ['except' => 'show', 'create', 'edit']*/);
 Route::resource('tipocita', 'TipoCitaController', ['except' => 'show']/*, ['except' => 'show', 'create', 'edit']*/);
 
+Route::get('citas/booking', 'AppoinmentController@bookings')->name("bookings");
+
 /*Route::get('Api', function (){
 	$client = new Client([
 		// Base URI is used with relative requests
@@ -63,3 +68,61 @@ Route::get('Api/{id}', 'HomeController@show');
 	$posts =  json_decode($response->getBody()->getContents());
 	return view('front.pagos', compact("posts"));
 });*/
+
+/*
+ * Payu Routes
+ */
+
+Route::get('api/response', function (Request $request){
+	$data = $request['merchantId'];
+	echo "<pre>",print_r($data),"</pre>";
+})->name('response');
+
+Route::get('api/confirmation', function (Request $request){
+	dd($request);
+})->name('confirmation');
+//Route::post('api/payu', function (){
+Route::get('api/payu', function (){
+	$apikey = "p1fkjA6N0yv1Mt2RZxZ4XnA4aB";
+	$datos = [
+		"merchantId" => "697831",
+		"accountId" => "512321",
+		"description" => "Test PAYU",
+		"referenceCode" => "TestPayU",
+		"amount" => "20000",
+		"tax" => "0",
+		"taxReturnBase" => "0",
+		"currency" => "COP",
+		"signature" => md5("p1fkjA6N0yv1Mt2RZxZ4XnA4aB~697831~TestPayU~20000~COP"), //Corresponsiente “ApiKey~merchantId~referenceCode~amount~currency”.
+		"test" => "1",
+		"buyerFullName" => "Andrew Corrales",
+		"buyerEmail" => "sistemas@beltcolombia.com",
+		"responseUrl" => route('response'),
+		"confirmationUrl" =>  route('confirmation'),
+	];
+
+//dd($datos);
+
+	$client = new Client([
+		//'headers' => [ 'Content-Type' => 'application/json' ]
+		'allow_redirects' => true,
+		'headers' => [ 'Content-Type' => 'application/form-data' ]
+	]);
+	//f48e57b767385576cb9550818761a0c0
+
+	$response = $client->post('https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu',
+		['form_params' => $datos
+		]
+	);
+	/*$request = new Guzzlereq(
+		"POST",
+		"https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu",
+		$headers,
+		$datos);*/
+	//$response2 = $client->send($response);
+//return redirect("api/response");
+	//return re;
+	//return $response2->getBody();
+	echo print_r($response->getBody());
+});
+
