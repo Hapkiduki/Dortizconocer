@@ -24,6 +24,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::segment(1) === 'videollamada' ? 'active text-white' : null }}" href="{{ url('videollamada') }}">Videollamada</a>
             </li>
+            @if (Auth::user()->admin())
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle {{ Request::segment(1) === 'horarios' ? 'active text-white' : null }}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Configuración</a>
                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -31,6 +32,7 @@
                     <a class="dropdown-item" href="{{ url('tipocita') }}">Tipos de cita</a>
                 </div>
             </li>
+            @endif
             <li class="nav-item">
                 <a class="nav-link {{ Request::segment(1) === 'citas' ? 'active text-white' : null }}" href="{{  route('citas.index') }}">Reserva tu cita</a>
             </li>

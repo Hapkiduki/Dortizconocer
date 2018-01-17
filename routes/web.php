@@ -35,8 +35,11 @@ Route::get('citas/my_current_appointments', 'AppoinmentController@my_current_app
 Route::view('pagos', 'front.pagos');
 Route::view('servicios', 'front.servicios');
 Route::view('videollamada', 'front.videollamada');
-Route::resource('horarios', 'ScheduleController', ['except' => 'show']/*, ['except' => 'show', 'create', 'edit']*/);
-Route::resource('tipocita', 'TipoCitaController', ['except' => 'show']/*, ['except' => 'show', 'create', 'edit']*/);
+
+Route::group(['middleware' => ['is_admin']], function () {
+    Route::resource('horarios', 'ScheduleController', ['except' => 'show']/*, ['except' => 'show', 'create', 'edit']*/);
+    Route::resource('tipocita', 'TipoCitaController', ['except' => 'show']/*, ['except' => 'show', 'create', 'edit']*/);
+});
 
 Route::get('citas/booking', 'AppoinmentController@bookings')->name("bookings");
 
