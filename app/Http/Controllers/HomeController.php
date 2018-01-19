@@ -43,13 +43,13 @@ class HomeController extends Controller
 		$response = $client->request('GET', 'posts');
 		$posts =  json_decode($response->getBody()->getContents());*/
 		$posts =  $this->posts->all();
-		return view('front.pagos', compact("posts"));
+		return view('configuracion.pagos', compact("posts"));
     }
 
 	public function show($id)
 	{
 		$post =  $this->posts->find($id);
-		return view('front.servicios', compact("post"));
+		return view('configuracion.servicios', compact("post"));
     }
 
 }

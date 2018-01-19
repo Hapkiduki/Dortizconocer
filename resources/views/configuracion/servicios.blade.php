@@ -9,10 +9,10 @@
     <br><br><br>
         <div class="card col-sm-6">
             <div class="card-header bg-primary text-white">
-                Titlulo
+                {!! $post->title !!}
             </div>
             <div class="card  card-body">
-                Cuerpo
+                {!! $post->body !!}
             </div>
         </div>
         <br>

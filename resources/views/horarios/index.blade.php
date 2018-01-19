@@ -53,8 +53,10 @@
                                         disponibles</h3></li>
                             </ul>
                         @endforelse
+                        <div class="row justify-content-center">
 
                             {{$schedules->render()}}
+                        </div>
 
                     </div>
                     <div class="card-footer"><a href="{{ route("horarios.create")}}"

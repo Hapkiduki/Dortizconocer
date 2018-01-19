@@ -19,7 +19,6 @@
     <link href="{{ asset('css/app.css')}}" rel="stylesheet"/>
     <link href="{{ asset('plugins/fullcalendar-3.7.0/fullcalendar.min.css')}}" rel='stylesheet' />
     <link href="{{ asset('plugins/fullcalendar-3.7.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
-
 </head>
 <body>
 <div id="dortizconocer_loader">
@@ -30,8 +29,31 @@
     @include('layouts.nav')
     @yield('content')
     <br><br><br>
-</div>
+    <br><br><br>
+    <br><br><br>
 
+    {{--Start footer--}}
+    <footer class="footer bg-primary">
+        <div class="content container text-white"><br>
+            <br>
+            {!! Form::button('<i class="fab fa-facebook fa-2x"></i>', ['type' => 'button', 'class' => 'float-right btn btn-danger btn-circle', 'onclick' => "return confirm('Esta seguro de eliminar el registro?')"]) !!}
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br>
+            Architecto at, atque autem dolores esse facere fuga fugiat incidunt iusto neque nulla numquam,
+            <br>
+            obcaecati optio praesentium quidem quo saepe velit vitae!
+            <br>
+        </div>
+        <div class="col col-md-12 text-white text-center copyright">
+            <strong>Dortizconocer </strong>Copyright &copy; {{ date('Y') }} Todos los derechos reservados
+            <br>
+            <img src="{{ asset('Logo.png') }}" alt="Dortizconocer" style="height: 50px;
+  padding: 1px;
+  width: auto;" />
+        </div>
+    </footer>
+    {{--End footer--}}
+</div>
 <a href="#" class="btn btn-primary scrollup"><i class="fas fa-angle-up active"></i></a>
 <!-- Scripts -->
 

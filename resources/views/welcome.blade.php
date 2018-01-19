@@ -18,7 +18,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-                <img class="d-block img-responsive img-fluid" src="{{ asset('img/slider/friends.jpg') }}"
+                <img class="d-block img-fluid" src="{{ asset('img/slider/friends.jpg') }}"
                      alt="First slide" >
                 <div class="carousel-caption d-none d-md-block bg-primary" style="opacity: 0.9">
                     <h3><strong>Te acompañamos!</strong></h3>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block img-responsive img-fluid" src="{{ asset('img/slider/partner.jpg') }}"
+                <img class="d-block img-fluid" src="{{ asset('img/slider/partner.jpg') }}"
                      alt="Second slide">
                 <div class="carousel-caption d-none d-md-block bg-primary " style="opacity: 0.9">
                     <h3><strong>Queremos conocerte</strong></h3>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block img-responsive img-fluid" src="{{ asset('img/slider/help.jpg') }}"
+                <img class="d-block img-fluid" src="{{ asset('img/slider/help.jpg') }}"
                      alt="Third slide">
                 <div class="carousel-caption d-none d-md-block bg-primary" style="opacity: 0.9">
                     <h3><strong>Se libre!</strong></h3>
