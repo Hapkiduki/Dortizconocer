@@ -58,6 +58,9 @@
                                     Ingresar
                                 </button>
 
+                                <a class="btn btn-light" href="{{ route('register') }}">
+                                    Registrarse
+                                </a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     ¿Olvidaste tu contraseña?
                                 </a>

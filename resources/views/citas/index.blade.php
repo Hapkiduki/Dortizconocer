@@ -3,77 +3,123 @@
 @section('title', 'Citas')
 
 @section('content')
-    <br><br><br>
-    <div class="container">
-        @if (session('status'))
-            <ul class="alert alert-{!! session('status')[0] !!}">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{ session('status')[1] }}
-            </ul>
-        @endif
-        <a href="{{ route('mis_citas') }}" class="btn btn-primary float-right">Mis Citas</a>
-            <div class="col-sm-11">
+<br>
+
+<div class="container">
+    @if (session('status'))
+        <ul class="alert alert-{!! session('status')[0] !!}">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ session('status')[1] }}
+        </ul>
+    @endif
+    
+    @auth
+    <a href="{{ route('mis_citas') }}" class="btn btn-primary float-right">Mis Citas</a>
+    <div class="col-sm-11">
         <a href="{{ route('bookings') }}" class="btn btn-warning float-right">Mis reservas</a>
-            </div>
-        <br>
-        <p>Agenda tu cita hoy, confirma el pago y seras contactado en breve por un especialista.</p>
-        {!! Form::open(['route' => 'citas.store']) !!}
-        {{csrf_field()}}
-        <div class="form group{{ $errors->has('descripcion') ? ' has-error' : '' }} col-sm-6">
-            {!!  Form::label('descripcion', 'Descripción') !!}
-            {!! Form::textarea('descripcion',null,['class'=>'form-control', 'rows' => 5]) !!}
-            @if ($errors->has('descripcion'))
-                <span class="help-block text-danger"><strong>{{ $errors->first('descripcion') }}</strong></span>
-            @endif
-        </div>
-        <div class="form group{{ $errors->has('tipo_cita_id') ? ' has-error' : '' }} col-md-3">
-            {!!  Form::label('tipo_cita_id', 'Tipo de cita') !!}
-            {!! Form::select('tipo_cita_id', $tipo_citas, null, ['class' => 'form-control select2','placeholder' => '[ Seleccione una opción... ]']); !!}
-            @if ($errors->has('tipo_cita_id'))
-                <span class="help-block text-danger"><strong>{{ $errors->first('tipo_cita_id') }}</strong></span>
-            @endif
-        </div>
-        <br><br><br><br>
-        <div class="form group{{ $errors->has('tipo') ? ' has-error' : '' }} col-sm-6">
-            <label>{!! Form::radio('tipo', 'llamada') !!} Llamada</label>&nbsp;&nbsp;&nbsp;
-            <label>{!! Form::radio('tipo', 'videollamada') !!} Videollamada</label>
-            @if ($errors->has('tipo'))
-                <span class="help-block text-danger"><strong>{{ $errors->first('tipo') }}</strong></span>
-            @endif
-        </div>
-        <div class="form group{{ $errors->has('fec_hora') ? ' has-error' : '' }} col-sm-8">
-            {!!  Form::label('fec_hora', 'Fecha de cita') !!}
-            <div class="input-group col-sm-4 datetimepicker">
-                <span class="input-group-addon">
-                    <span class="fas fa-calendar-alt"></span>
-                </span>
-                {!!  Form::text('fec_hora', null, ['class' => 'form-control', 'placeholder' => date("Y-m-d"), 'required']) !!}
+    </div>
+    <br>
+    <br>
+    <br>
+    @endauth
+</div>
+<div class="card mx-auto" style="width: 80rem;">
+    <div class="card-body">
+        <h5 class="card-title text-center">Reserva</h5>
+        <h6 class="card-subtitle mb-2 text-muted text-center">Agenda tu cita</h6>
+        <p class="card-text text-center">
+            Agenda tu cita hoy, confirma el pago y seras contactado en breve por un especialista.
+        </p>
 
-            </div>
-            @if ($errors->has('fec_hora'))
-                <span class="help-block text-danger"><strong>{{ $errors->first('fec_hora') }}</strong></span>
-            @endif
-        </div>
 
-        {!! Form::hidden('intervalo') !!}
-            <br>
-        <div class="form group{{ $errors->has('hora_ini') ? ' has-error' : '' }} col-sm-3">
-            {!!  Form::label('hora_ini', 'Hora de cita') !!}
-            <select name="hora_ini" id="hora_ini" class="form-control">
-                <option selected="selected" value="">[ Seleccione una opción... ]</option>
-            </select>
-            @if ($errors->has('hora_ini'))
-                <span class="help-block text-danger"><strong>{{ $errors->first('hora_ini
-        ') }}</strong></span>
-            @endif
-        </div>
-        <br><br><br><br>
-        <div class="form-group col-sm-6 col-sm-offset-3">
-            {!! Form::submit('Reservar', ['class' => 'btn btn-primary btn-group-justified btn-lg']) !!}
-        </div>
-        {!! Form::close() !!}
+        {!! Form::open(['route' => 'citas.store', 'class' => 'form-horizontal']) !!}
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                            <div class="col-sm-10 form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
+                                {!!  Form::label('descripcion', 'Descripción') !!}
+                                {!! Form::textarea('descripcion',null,['class'=>'form-control', 'rows' => 2]) !!}
+                                @if ($errors->has('descripcion'))
+                                    <span class="help-block text-danger"><strong>{{ $errors->first('descripcion') }}</strong></span>
+                                @endif
+                            </div>
+                    </div>
+                    <div class="col">
+                            <div class="col-sm-6 form group{{ $errors->has('tipo_cita_id') ? ' has-error' : '' }}">
+                                {!!  Form::label('tipo_cita_id', 'Tipo de cita') !!}
+                                {!! Form::select('tipo_cita_id', $tipo_citas, null, ['class' => 'form-control select2','placeholder' => '[ Seleccione una opción... ]']); !!}
+                                @if ($errors->has('tipo_cita_id'))
+                                    <span class="help-block text-danger"><strong>{{ $errors->first('tipo_cita_id') }}</strong></span>
+                                @endif
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col">
+                                <div class="form group{{ $errors->has('tipo') ? ' has-error' : '' }} ">
+                                    <label>{!! Form::radio('tipo', 'llamada') !!} Llamada</label>&nbsp;&nbsp;&nbsp;
+                                    <label>{!! Form::radio('tipo', 'videollamada') !!} Videollamada</label>
+                                    @if ($errors->has('tipo'))
+                                        <span class="help-block text-danger"><strong>{{ $errors->first('tipo') }}</strong></span>
+                                    @endif
+                                </div>                
+                        </div>
+                        <div class="col">
+                                <div class="col-sm-8 form group{{ $errors->has('fec_hora') ? ' has-error' : '' }}">
+                                    {!!  Form::label('fec_hora', 'Fecha de cita') !!}
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="fas fa-calendar-alt"></span>
+                                        </span>
+                                        {!!  Form::text('fec_hora', null, ['class' => 'form-control datetimepicker', 'placeholder' => date("Y-m-d"), 'required']) !!}
+                        
+                                    </div>
+                                    @if ($errors->has('fec_hora'))
+                                        <span class="help-block text-danger"><strong>{{ $errors->first('fec_hora') }}</strong></span>
+                                    @endif
+                                </div>
+                        </div>
+                        <div class="col">
+                            <div class="col-sm-8 form group{{ $errors->has('fec_hora') ? ' has-error' : '' }}">
+                                {!!  Form::label('fec_hora', 'Fecha de cita') !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fas fa-calendar-alt"></span>
+                                    </span>
+                                    {!!  Form::text('fec_hora', null, ['class' => 'form-control datetimepicker', 'placeholder' => date("Y-m-d"), 'required']) !!}
+                    
+                                </div>
+                                @if ($errors->has('fec_hora'))
+                                    <span class="help-block text-danger"><strong>{{ $errors->first('fec_hora') }}</strong></span>
+                                @endif
+                            </div>
+                                {!! Form::hidden('intervalo') !!}
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col">
+                            <div class="col-sm-8 form group{{ $errors->has('hora_ini') ? ' has-error' : '' }}">
+                                {!!  Form::label('hora_ini', 'Hora de cita') !!}
+                                <select name="hora_ini" id="hora_ini" class="form-control">
+                                    <option selected="selected" value="">[ Seleccione una opción... ]</option>
+                                </select>
+                                @if ($errors->has('hora_ini'))
+                                    <span class="help-block text-danger"><strong>{{ $errors->first('hora_ini') }}
+                                        </strong></span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col">
+                            <br>
+                            {!! Form::submit('Reservar', ['class' => 'card-link btn btn-primary float-right']) !!}
+                        </div>
+                </div>
+            </div>
+        {!! Form::close() !!}  
 
     </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -92,7 +138,7 @@
                 });
 
 
-                $('div.datetimepicker').datetimepicker({
+                $('input.datetimepicker').datetimepicker({
                     format: 'YYYY-MM-DD',
                     useCurrent: false,
                     locale: 'es',

@@ -25,8 +25,14 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/citas/booking';
 
+
+    protected function redirectTo()
+    {
+    /* generate URL dynamicaly */
+        return url()->previous(); // return dynamicaly generated URL.
+    }
     /**
      * Create a new controller instance.
      *

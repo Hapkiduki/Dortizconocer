@@ -13,7 +13,7 @@ class AppoinmentController extends Controller
 
     function __construct()
     {
-        $this->middleware('auth', ['except' => array('disponibilidad_hora', 'disponibilidad')]);
+        $this->middleware('auth', ['except' => array('index','disponibilidad_hora', 'disponibilidad')]);
     }
 
     public function index()
