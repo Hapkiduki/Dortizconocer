@@ -54,7 +54,7 @@ class ResetPasswordNotification extends Notification
             ->line('Usted está recibiendo este correo electrónico porque recibimos una solicitud de
              restablecimiento de contraseña para su cuenta.')
             ->action('Restablecer Contraseña', url(config('app.url').route('password.reset', $this->token, false)))
-            ->line('Si no solicitó restablecer la contraseña, ignore esta notificación.')
+            ->line('Si no solicitó restablecer la contraseña, haga caso omiso a esta notificación.')
             ->salutation("¡Saludos!");
     }
 }
